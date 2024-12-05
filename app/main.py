@@ -12,7 +12,7 @@ class Animal:
 
     @classmethod
     def get_alive(cls) -> list:
-        return [(repr(animal) for animal in cls.alive)]
+        return list([(repr(animal) for animal in cls.alive)])
 
 
 class Herbivore(Animal):
@@ -24,5 +24,5 @@ class Carnivore(Animal):
     def bite(self, herbivore: Herbivore) -> None:
         if isinstance(herbivore, Herbivore) and not herbivore.hidden:
             herbivore.health -= 50
-        if herbivore.health <= 0:
+        if herbivore.health <= 0 and herbivore in Animal.alive:
             Animal.alive.remove(herbivore)
